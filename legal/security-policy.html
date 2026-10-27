@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security Policy - Abantu's Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#fafafa;--fg:#000;--fg2:#1a1a1a;--mid:#404040;--soft:#808080;--line:#e5e5e5;
+--serif:'Instrument Serif',Georgia,'Times New Roman',serif;--sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:800px;margin:0 auto;padding:0 32px}
+nav{position:fixed;top:0;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);height:64px;z-index:20}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:12px;font:600 20px/1 var(--sans);letter-spacing:-.01em;text-decoration:none}
+.mark{display:block;width:36px;height:36px;object-fit:contain}
+.back-link{font:550 14px var(--sans);text-decoration:none;color:var(--mid);transition:color .3s ease-out}
+.back-link:hover{color:var(--fg)}
+.legal-content{padding:calc(64px + 48px) 0 48px}
+.legal-content h1{font:400 clamp(36px,5vw,64px)/1.05 var(--serif);letter-spacing:-.01em;margin:0 0 32px}
+.legal-content h2{font:550 24px/1.3 var(--sans);margin:48px 0 16px;color:var(--fg)}
+.legal-content p{max-width:65ch;margin:0 0 16px;color:var(--mid)}
+.legal-content ul{margin:0 0 16px;padding-left:24px;color:var(--mid)}
+.legal-content li{margin-bottom:8px}
+.legal-content .last-updated{font:400 14px var(--sans);color:var(--soft);margin-top:48px}
+@media(max-width:640px){.wrap{padding:0 16px}.legal-content{padding:calc(64px + 32px) 0 32px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="../index.html"><img class="mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAFoCAYAAAB65WHVAAEAAElEQVR42uy9d5hlW1UtPtZae5/q6u4buPeSMxJEFBBQkkiSIIgJFRWzgAn0qc/wTM+ECfVnwIQ+RBQRFVAEERQBEREByTnn6w1wY4c6e+/1+2Ot3WeescfcVd23urrvpff31VfdVafO2WGtGcYcc8wAYAEgAxiwOjKAACAC6Ou/Uf8/mH/39d/j78fXBvp5Nt+j+ff4OePPM4BkfjbUr2BeD/PaaH42ftZAn2+vIQLozOeMn5HE+YDef6j/D/SZ9t/2+lP9rCDOP5h7PX5+cj4rAFia+9LTuSbzHPia+V4kuhf2+fTm/dPMfQ3OZ49rozH/7mg95fr78Wfj/WnMdSXzeXYd2nscab3y/3l9gZ5BoGsP5vOieY8kPkedWyfWsToH+z52/fX0eZHuhVp/g7luXo/8bNTvM31WMJ/H6ynTd++wnzOI80hkM+z/m7rOA62/np6DvQcd2RMIO2N/Nq69zjlPmM8ZaJ1Es1eDWNv29/a8x89r6Nyyc+/s/YnJ3Lho3jSJBcyLIZLRsQt/oEWeaYFnc6LjBh3oNV392wW9/2gAojAa2Sx+e9H2/a0BjeZ3AxkC+7dRbHTeiDDnB+G82Eg39OAHs2kCGeNEBjfQAgNde0fnbD/PLvKentlg7kkWjjsIBwSxPnoyIMFssvHn1ukM5nkoA2g3UhROFOJZ2DUdaQ3ZtZmEExjodZnuQW+uKYj1D/HseaNnuuZI19+QoYh0XlEYhkyGXgUEifYKaI9EMtp27SZyZkkEdg29v/3ZIIITta/sZ/B5qWfD69Jee0uGc7zW8Tk29L52vTaOg+rJ/mXax4HOK5tzysbAZ/EeyV5PMjfPerlgfpaE4Qji5sK8VyAjw9Ea3xT+/UDRyUAPcRALD8JYJ2PkQIsH9FCSs/EHcRODE6EF4cQgjEOgLCTQAuXsQxmfPHMPvIjJ3vtMUVkUUWMjnFoWUTvoOfLvkhOVJmF8esooorOGBuGgMBO9qqwHIhsZnDWtIlQ+h5Zem8S/reGAMErWgEBEa9mJzDl6TSJCCyIiT+Q0bFY5mPPkNR4pSGkoArXrhddEpt9nYSCDCPpsxmGdY6I1DRNo9LSXBzKoKqMf/653nLd9bpGy3exkPxyo9sLBRjLmIZHH4fDcLu4kvBccbwZxg9VGZoPPN52j3ig2pDqPIBaAiu7Z0SThAdUGSDNOITiblSOESIslEDzBEU+YMcCNc08gov8gUvZeZCG8kAO9bnCMH4RT52uKAvIZhNGMAmaxkXWecZbj+6jnwNcOsbmV0+RoMNE9iQKKG8hpZ2EQMxm8SAHSQjgViOcDARtyRBzF3ogiIOAARQVUvYiGkzjXgbJLZcyiyFTYoUBkkMGBZRqxdhRsEwWk2JMTBTkmG+wEgoGtg2W7FkSUHmgtrgWjNoyPAoPJDh4F4eXgfE900UlE48pQ9gJzyuLvEi2sRiwgL+qfcyiDwDeDE5WqBaMMWHRwd1BEaaOCQPhuFg5sENfZCvjJLgSGORRenYWBzcIBBoJhMv0uONCRMjCNY4AGJw1Wa6EhbDk40fTchsDkoQSnDqFSdohoKgDYEHUEFSmqPZkFXAVaL5GebRTOeqAo2cOYI2UxFiPvxX6MDrQZyGh5+3kQ7zPQs+AMcKD7FMU+zIT9M6w2UNYxEF6dKBKOIpMPdA6ds74HOg+IwPjY3k/iZkSKCrx0I4qbnGc8OeNMjMm0ArtV7w+noJloUQ2iCATxXhxNzBWSIkUFiaK57Hh/r1CovHpP+Gk/A6FkYZAgNgLDSEncP3WfhhmDloQTUnhgT1iiilryTHFvIGjK2yxZpJRBFGaiU2wOTj0F4nw8uAZOXQK" alt="Abantu's Gallery logo">Abantu's Gallery</a>
+<a class="back-link" href="../index.html#legal">← Back to Legal</a></div></nav>
+
+<main class="legal-content">
+<div class="wrap">
+<h1>Security Policy</h1>
+
+<p><strong>Last Updated:</strong> [Date]</p>
+
+<h2>1. Commitment to Security</h2>
+<p>Abantu's Gallery is committed to maintaining the security of all information we hold. We implement appropriate technical and organizational measures to protect your data.</p>
+
+<h2>2. Data Protection</h2>
+<p>We use industry-standard security measures to protect your personal data, including:</p>
+<ul>
+<li>Encryption of data in transit and at rest</li>
+<li>Secure authentication mechanisms</li>
+<li>Regular security audits</li>
+<li>Access controls and authentication</li>
+</ul>
+
+<h2>3. Reporting Security Issues</h2>
+<p>If you discover a security vulnerability, please report it to us at: shongilemyeza@icloud.com</p>
+
+<h2>4. Data Breach Response</h2>
+<p>In the event of a data breach, we will:</p>
+<ul>
+<li>Notify affected individuals without undue delay</li>
+<li>Provide information about the breach</li>
+<li>Take steps to mitigate the impact</li>
+<li>Implement measures to prevent future breaches</li>
+</ul>
+
+<h2>5. User Responsibilities</h2>
+<p>Users are responsible for:</p>
+<ul>
+<li>Keeping their passwords secure</li>
+<li>Not sharing account credentials</li>
+<li>Reporting suspicious activity</li>
+</ul>
+
+<h2>6. Contact</h2>
+<p>For security-related inquiries, contact us at: shongilemyeza@icloud.com</p>
+
+<p class="last-updated">This security policy was last updated on [Date].</p>
+</div>
+</main>
+
+</body>
+</html>
