@@ -46,29 +46,38 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @keyframes cue{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 .hero .word span{opacity:0;transform:translateY(60%);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes rise{to{opacity:1;transform:none}}
-/* projects stage - horizontal 3D scroll with overlap */
-.projects{min-height:100svh;padding:calc(64px + 48px) 0 48px;overflow:hidden}
+/* projects stage - 3D parallax card slider */
+.projects{min-height:100svh;padding:calc(64px + 48px) 0 48px;overflow:hidden;background:var(--bg)}
 .projects .wrap{max-width:100%;padding:0 32px}
 .projects h2{margin-bottom:48px}
-.scroll-container{position:relative;perspective:2000px;padding:80px 0}
-.scroll-track{display:flex;padding:0 calc(50vw - 350px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}
-.scroll-track::-webkit-scrollbar{display:none}
-.project-wrapper{flex:0 0 auto;position:relative;width:640px;margin-right:-120px;scroll-snap-align:center;transition:transform .8s cubic-bezier(.16,1,.3,1)}
-.project-wrapper:hover{transform:translateY(-20px)}
-.project-card{position:relative;width:100%;height:360px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:pointer;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s cubic-bezier(.16,1,.3,1)}
-.project-card:hover{transform:rotateY(-5deg) rotateX(5deg) translateZ(40px);box-shadow:0 30px 80px rgba(0,0,0,.2)}
-.project-card img,.project-card svg{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.project-card:hover img,.project-card:hover svg{transform:scale(1.05)}
-.project-title{margin-top:24px;font:600 20px/1.2 var(--serif);color:var(--fg);text-align:center;transition:opacity .3s ease-out}
-.project-wrapper:hover .project-title{opacity:.6}
-.scroll-hint{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font:550 14px var(--sans);letter-spacing:.02em;color:var(--soft);display:flex;align-items:center;gap:8px}
-.scroll-hint::after{content:'';width:24px;height:1px;background:var(--soft);animation:scrollHint 1.5s ease-in-out infinite}
-@keyframes scrollHint{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+.slider-container{position:relative;width:100%;max-width:1400px;margin:0 auto;height:500px;display:grid;place-items:center}
+.slider{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.slider--btn{--size:48px;display:inline-flex;justify-content:center;align-items:center;opacity:.6;transition:opacity .3s ease-out;z-index:999;background:var(--bg);border-radius:50%;border:1px solid var(--line);padding:8px}
+.slider--btn:hover{opacity:1;background:var(--bg2)}
+.slider--btn svg{width:var(--size);height:var(--size);stroke:var(--fg)}
+.slides__wrapper{width:100%;height:100%;display:grid;place-items:center;position:relative}
+.slides__wrapper > *{grid-area:1/-1}
+.slides{width:100%;height:100%;display:grid;place-items:center;pointer-events:none}
+.slides > *{grid-area:1/-1}
+.slide{--slide-width:640px;--slide-height:360px;--slide-tx:0px;--slide-ty:0vh;--slide-scale:1;--slide-rotY:0deg;--slide-tz:0px;width:var(--slide-width);height:var(--slide-height);user-select:none;perspective:1000px;transform:perspective(1000px) translate3d(var(--slide-tx),var(--slide-ty),var(--slide-tz)) rotateY(var(--slide-rotY)) scale(var(--slide-scale));transition:transform .8s cubic-bezier(.16,1,.3,1);position:absolute;cursor:pointer}
+.slide[data-current]{--slide-scale:1.15;--slide-tz:0px;--slide-tx:0px;--slide-rotY:0deg;pointer-events:auto;z-index:10}
+.slide[data-next]{--slide-tx:380px;--slide-rotY:-25deg;--slide-scale:.95;z-index:5}
+.slide[data-previous]{--slide-tx:-380px;--slide-rotY:25deg;--slide-scale:.95;z-index:5}
+.slide:not([data-current]){pointer-events:none}
+.slide__inner{--rotX:0;--rotY:0;--bgPosX:0%;--bgPosY:0%;position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(var(--rotX)) rotateY(var(--rotY));background:var(--bg2);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.slide--image__wrapper{position:relative;width:100%;height:100%;overflow:hidden}
+.slide--image{width:100%;height:100%;position:absolute;top:50%;left:50%;object-fit:cover;object-position:center;transform:translate(-50%,-50%) scale(1.15) translate3d(var(--bgPosX),var(--bgPosY),0);transition:filter .8s cubic-bezier(.16,1,.3,1)}
+.slide[data-current] .slide--image{filter:brightness(1)}
+.slide:not([data-current]) .slide--image{filter:brightness(.6)}
+.slide-info{position:absolute;bottom:24px;left:24px;right:24px;z-index:20;pointer-events:none}
+.slide-info--text{font:600 24px/1.2 var(--serif);color:var(--fg);opacity:0;transform:translateY(20px);transition:opacity .4s ease-out .2s,transform .4s ease-out .2s;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.slide[data-current] .slide-info--text{opacity:1;transform:translateY(0)}
 @media(max-width:800px){
-.scroll-track{padding:0 16px}
-.project-wrapper{width:400px;margin-right:-60px;height:280px}
-.project-card{height:280px}
-.project-title{font-size:16px;margin-top:16px}
+.slider-container{height:400px}
+.slide{--slide-width:320px;--slide-height:200px}
+.slide[data-next]{--slide-tx:180px;--slide-rotY:-15deg}
+.slide[data-previous]{--slide-tx:-180px;--slide-rotY:15deg}
+.slide-info--text{font-size:16px}
 }
 /* sections */
 section.s{padding:96px 0}
@@ -107,10 +116,19 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:14px;color:var(
 <div class="projects" id="projects">
 <div class="wrap">
 <h2 class="rv">Our Projects</h2>
-<div class="scroll-container">
-<div class="scroll-track" id="projectCards"></div>
+<div class="slider-container">
+<div class="slider">
+<button class="slider--btn" id="prevBtn" aria-label="Previous project">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+</button>
+<div class="slides__wrapper">
+<div class="slides" id="projectSlides"></div>
 </div>
-<div class="scroll-hint">Scroll to explore</div>
+<button class="slider--btn" id="nextBtn" aria-label="Next project">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+</button>
+</div>
+</div>
 </div>
 </div>
 
@@ -212,22 +230,46 @@ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 setTimeout(function(){spans.forEach(function(s){s.style.animation='none';s.style.opacity=1;s.style.transform='none'})},1900);
 if(!reduce)document.addEventListener('mousemove',function(e){if(scrollY>innerHeight)return;spans.forEach(function(s){var b=s.getBoundingClientRect(),d=Math.hypot(e.clientX-(b.left+b.width/2),e.clientY-(b.top+b.height/2)),f=Math.max(0,1-d/260);s.style.transform='translateY('+(-f*28).toFixed(1)+'px)'})});
 
-/* projects stage - horizontal 3D cards with overlap */
-var track=document.getElementById('projectCards');
+/* projects stage - 3D parallax card slider */
+var slidesContainer=document.getElementById('projectSlides');
+var currentIndex=0;
+var slides=[];
 P.forEach(function(p,i){
-var wrapper=document.createElement('div');
-wrapper.className='project-wrapper';
-var card=document.createElement('div');
-card.className='project-card';
-card.innerHTML=(p.img?'<img src="'+p.img+'" alt="'+p.alt+'">':art(p.k,i+1));
-card.addEventListener('click',function(){window.location.href='project.html?id='+i});
-wrapper.appendChild(card);
-var title=document.createElement('div');
-title.className='project-title';
-title.textContent=p.t;
-wrapper.appendChild(title);
-track.appendChild(wrapper);
+var slide=document.createElement('div');
+slide.className='slide';
+if(i===0)slide.setAttribute('data-current','');
+else if(i===1)slide.setAttribute('data-next','');
+else slide.setAttribute('data','');
+slide.innerHTML='<div class="slide__inner"><div class="slide--image__wrapper">'+(p.img?'<img class="slide--image" src="'+p.img+'" alt="'+p.alt+'">':art(p.k,i+1))+'</div><div class="slide-info"><div class="slide-info--text">'+p.t+'</div></div></div>';
+slide.addEventListener('click',function(){window.location.href='project.html?id='+i});
+slidesContainer.appendChild(slide);
+slides.push(slide);
 });
+function updateSlides(){
+slides.forEach(function(slide,i){
+slide.removeAttribute('data-current');
+slide.removeAttribute('data-next');
+slide.removeAttribute('data-previous');
+if(i===currentIndex)slide.setAttribute('data-current','');
+else if(i===currentIndex+1)slide.setAttribute('data-next','');
+else if(i===currentIndex-1)slide.setAttribute('data-previous','');
+});
+}
+document.getElementById('prevBtn').addEventListener('click',function(){
+if(currentIndex>0){currentIndex--;updateSlides();}});
+document.getElementById('nextBtn').addEventListener('click',function(){
+if(currentIndex<P.length-1){currentIndex++;updateSlides();}});
+var startX=0;
+var isDragging=false;
+slidesContainer.addEventListener('mousedown',function(e){startX=e.clientX;isDragging=true;});
+slidesContainer.addEventListener('mousemove',function(e){
+if(!isDragging)return;
+var diff=startX-e.clientX;
+if(diff>50){if(currentIndex<P.length-1){currentIndex++;updateSlides();}isDragging=false;}
+else if(diff<-50){if(currentIndex>0){currentIndex--;updateSlides();}isDragging=false;}
+});
+slidesContainer.addEventListener('mouseup',function(){isDragging=false;});
+slidesContainer.addEventListener('mouseleave',function(){isDragging=false;});
 
 /* nav active + reveal */
 var links=document.querySelectorAll('nav li a');
