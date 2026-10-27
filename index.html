@@ -32,7 +32,13 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
 nav li a{font:550 14px/1 var(--sans);letter-spacing:.02em;text-decoration:none;padding:12px 0;display:inline-block;border-bottom:2px solid transparent}
 nav li a:hover,nav li a.on{border-bottom-color:var(--fg)}
-@media(max-width:640px){nav li:nth-child(n+3){display:none}}
+@media(max-width:640px){
+nav li:nth-child(n+3){display:none}
+.hero{padding:calc(64px + 32px) 0 32px}
+.word{font-size:clamp(48px,12vw,96px)}
+.lede{font-size:16px}
+.cue{font-size:12px}
+}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
 /* hero */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:calc(64px + 48px) 0 48px;position:relative}
@@ -79,6 +85,42 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .slide[data-next]{--slide-tx:180px;--slide-rotY:-15deg}
 .slide[data-previous]{--slide-tx:-180px;--slide-rotY:15deg}
 .slide-title{font-size:20px}
+}
+@media(max-width:640px){
+.slider-container{height:400px}
+.slide{--slide-width:280px;--slide-height:160px}
+.slide[data-next]{--slide-tx:140px;--slide-rotY:-10deg}
+.slide[data-previous]{--slide-tx:-140px;--slide-rotY:10deg}
+.slide-title{font-size:18px}
+.slider--btn{--size:40px}
+.slider--btn svg{width:var(--size);height:var(--size)}
+}
+@media(max-width:480px){
+.slider-container{height:350px}
+.slide{--slide-width:240px;--slide-height:140px}
+.slide[data-next]{--slide-tx:120px;--slide-rotY:-8deg}
+.slide[data-previous]{--slide-tx:-120px;--slide-rotY:8deg}
+.slide-title{font-size:16px}
+.slider--btn{--size:36px}
+.slider--btn svg{width:var(--size);height:var(--size)}
+}
+/* sections mobile */
+@media(max-width:800px){
+.cards{grid-template-columns:1fr}
+.two{grid-template-columns:1fr;gap:24px}
+.net-box canvas{height:400px}
+}
+@media(max-width:640px){
+.projects .wrap{padding:0 16px}
+.projects h2{font-size:28px;margin-bottom:32px}
+.cards{gap:16px}
+.card{padding:24px}
+.card h3{font-size:20px}
+.btn{width:100%;text-align:center;display:block}
+section.s{padding:64px 0}
+.net-box canvas{height:300px}
+.legal-content{padding:calc(64px + 32px) 0 32px}
+.legal-content h1{font-size:32px}
 }
 /* sections */
 section.s{padding:96px 0}
